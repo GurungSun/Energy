@@ -1,0 +1,97 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.bottom_navbar  {
+    background-color: #335D80;
+    z-index: 10;
+    min-height: 4rem;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 0 0.25rem rgba(0,0,0,0.5);
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+    padding-bottom: calc(0.5rem + env(safe-area-inset-bottom));
+}
+
+.navitem{
+    width: 3rem;
+    height: 3rem;
+    margin: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    color: #FFFFFF;
+}
+
+.navitem .material-symbols-outlined{
+    font-size: 3rem;
+}
+
+.icons{
+    display: flex;
+    width: 100%;
+    height: 20rem;
+}
+
+.icon{
+    width: 11.25rem;
+    height: 11.25rem;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.25);
+    margin: auto;
+    border-radius: 0.5rem;
+}
+
+.split1{
+    display: flex;
+    width: 100%;
+    height: 8rem;
+}
+
+.status{
+    width: 50%;
+    height: auto;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 1rem;
+}
+
+.light{
+    width: 50%;
+    height: auto;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.material-symbols-outlined{
+    font-size: 6rem;
+}
+
+.split2{
+    width: 100%;
+    height: 4rem;
+}
+
+.appname{
+    text-align: center;
+    margin: auto;
+}
+
+.stat{
+    width: 90%;
+    height: 10rem;
+    margin: auto;
+    background-color: #335D80;
+}
