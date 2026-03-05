@@ -1,0 +1,13 @@
+@page "/control"
+@inject HttpClient Http
+
+<h3>LED Control</h3>
+
+<button @onclick="FlashLed">Flash LED</button>
+
+@code {
+    async Task FlashLed()
+    {
+        await Http.GetAsync("http://10.1.18.1:5000/flash");
+    }
+}

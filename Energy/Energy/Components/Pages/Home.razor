@@ -24,11 +24,13 @@
     </div>
 
     <div class="bottom_navbar">
-        <div class="navitem">
-            <span class="material-symbols-outlined">
-                energy_program_saving
-            </span>
-        </div>
+        <a href="/control">
+             <div class="navitem">
+                <span class="material-symbols-outlined">
+                    energy_program_saving
+                </span>
+            </div>
+        </a>
         <div class="navitem">
             <span class="material-symbols-outlined">
                 home
@@ -100,6 +102,17 @@
             <p>Did you know that the UK is a world leader in offshore wind energy?</p>
         </div>
     </div>
+
+    @inject HttpClient Http
+
+    <button @onclick="FlashLed">Flash LED</button>
+
+    @code {
+        async Task FlashLed()
+        {
+            await Http.GetAsync("http://10.1.18.1:5000/flash");
+        }
+    }
 
     <div class="block">
     
