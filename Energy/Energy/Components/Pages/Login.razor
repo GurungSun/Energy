@@ -1,25 +1,33 @@
 @page "/"
 @page "/login"
 
-<a href="/home">
-    <div class="go">
-        <h1>go</h1>
+<div class="login-page">
+    <div class="header">
+        <h1>Start Saving Now With Helios</h1>
     </div>
-</a>
 
-<div class="login">
-    <h1>Login</h1>
-    <input type="text" placeholder="Username" />
-    <input type="password" placeholder="Password" />
-    <button>Login</button>
-</div>
-<div class="option">
-    <div class="desc">
-        <p>Don't have an account?</p>
+    <div class="login">
+        <div class="enter">
+            <input type="text" placeholder="Username" class="input" />
+        </div>
+        <div class="enter">
+            <input type="password" placeholder="Password" class="input" />
+        </div>
+        <div class="continue">
+            <a href="/home">  
+                <button>Login</button>  
+            </a>     
+        </div>   
     </div>
-    <div class="signup">
-        <a href="/signup">
-            <p>Sign Up</p>
-        </a>
+
+    <div class="option">
+        <div class="continue">
+            <a href="/signup">
+                <button>Sign Up</button>
+            </a>
+        </div>
+        <div class="desc">
+            <p>Don't have an account?</p>
+        </div>
     </div>
 </div>
