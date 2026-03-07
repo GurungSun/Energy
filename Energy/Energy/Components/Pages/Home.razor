@@ -1,9 +1,9 @@
-﻿@page "/"
+﻿@page "/home"
 
 <PageTitle>Home</PageTitle>
 
 <head>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=book_2,energy_program_saving,home,lightbulb_2" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_back,book_2,energy_program_saving,home,lightbulb_2" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
@@ -13,11 +13,13 @@
 <div>
     <div class="top_navbar">
         <div class="holder">
-            <div class="Ptitle">
-                <h6>Home</h6>
+            <div class="Ntitle">
+                <h5>Home</h5>
             </div>
             <div class="return">
-                
+                <span class="material-symbols-outlined">
+                    arrow_back
+                </span>
             </div>
         </div>
         
@@ -31,20 +33,20 @@
                 </span>
             </div>
         </a>
-        <div class="navitem">
-            <span class="material-symbols-outlined">
-                home
-            </span>
-        </div>
-        <div class="navitem">
-            <span class="material-symbols-outlined">
-                book_2
-            </span>
-        </div>
-    </div>
-
-    <div class="block">
-
+        <a href="/home">
+            <div class="navitem">
+                <span class="material-symbols-outlined">
+                    home
+                </span>
+            </div>
+        </a>
+        <a href="/tips">
+            <div class="navitem">
+                <span class="material-symbols-outlined">
+                    book_2
+                </span>
+            </div>
+        </a>
     </div>
 
     <div class="icons">
@@ -102,17 +104,6 @@
             <p>Did you know that the UK is a world leader in offshore wind energy?</p>
         </div>
     </div>
-
-    @inject HttpClient Http
-
-    <button @onclick="FlashLed">Flash LED</button>
-
-    @code {
-        async Task FlashLed()
-        {
-            await Http.GetAsync("http://10.1.18.1:5000/flash");
-        }
-    }
 
     <div class="block">
     

@@ -1,3 +1,4 @@
+
 @page "/control"
 @inject HttpClient Http
 
@@ -11,3 +12,27 @@
         await Http.GetAsync("http://10.1.18.1:5000/flash");
     }
 }
+
+<div class="bottom_navbar">
+        <a href="/control">
+             <div class="navitem">
+                <span class="material-symbols-outlined">
+                    energy_program_saving
+                </span>
+            </div>
+        </a>
+        <a href="/home">
+            <div class="navitem">
+                <span class="material-symbols-outlined">
+                    home
+                </span>
+            </div>
+        </a>
+        <a href="/tips">
+            <div class="navitem">
+                <span class="material-symbols-outlined">
+                    book_2
+                </span>
+            </div>
+        </a>
+    </div>

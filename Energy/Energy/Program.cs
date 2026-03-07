@@ -1,4 +1,6 @@
 using Energy.Components;
+using Energy.Data;
+using Energy.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +8,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
+
+builder.Services.AddSingleton<TipsData>();
+builder.Services.AddTransient<TipsService>();
+
+builder.Services.AddHttpClient("Default", client =>
+{
+    client.BaseAddress = new Uri("https://localhost:5193/"); // Update this if your app runs on a different port
+});   
 
 var app = builder.Build();
 

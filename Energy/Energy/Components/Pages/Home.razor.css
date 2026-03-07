@@ -18,63 +18,77 @@ html {
 }
 
 .top_navbar{
-    z-index: 10;
-    height: 8rem;
     width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
+    height: 8rem;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #335D80;
-    border-bottom-left-radius: 2rem;
-    border-bottom-right-radius: 2rem;
-}
-
-.top_navbar h6{
-    color: #000000;
-    font-family: "Arimo", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-    font-size: 1.5625rem;
-    font-weight: 700;
+    margin-bottom: 3rem;
 }
 
 .holder{
-    width: 100%;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
     height: 3rem;
     margin-top: 5rem;
+    display: flex;
+    position: relative; /* allow absolute children to be centered */
 }
 
-.Ptitle{
+.return{
+    height: 3rem;
+    width: 3rem;
+    border-radius: 100%;
+    box-shadow: 0 0 0.25rem rgba(0,0,0,0.5);
+    text-align: center;
+}
+
+.return .material-symbols-outlined{
+    font-size: 2rem;
+    color: #000000;
+    line-height: 3rem;
+}
+
+.Ntitle{
     text-align: center;
     font-family: "Arimo", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
     font-size: 1.5625rem;
     font-weight: 700;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.Ptitle h6{
-    color: #F5F2F0;
+.Ntitle h5{         
+    color: #000;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .bottom_navbar  {
     background-color: #335D80;
     z-index: 10;
     min-height: 4rem;
-    width: 100%;
+    width: 92%;
     position: fixed;
-    bottom: 0;
-    left: 0;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0.5rem 1rem;
     box-shadow: 0 0 0.25rem rgba(0,0,0,0.5);
-    border-top-left-radius: 1.5rem;
-    border-top-right-radius: 1.5rem;
+    border-radius: 1.5rem;
     padding-bottom: calc(0.5rem + env(safe-area-inset-bottom));
 }
 
