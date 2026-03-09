@@ -11,6 +11,7 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddSingleton<TipsData>();
 builder.Services.AddTransient<TipsService>();
+builder.Services.AddTransient<EnergyService>();
 
 builder.Services.AddHttpClient("Default", client =>
 {
