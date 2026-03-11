@@ -3,15 +3,6 @@
 @inject HttpClient Http
 @inject IJSRuntime JSRuntime
 
-
-
-@code {
-    async Task FlashLed()
-    {
-        await Http.GetAsync("http://10.1.18.1:5000/flash");
-    }
-}
-
 <head>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_back,book_2,energy_program_saving,home,lightbulb_2" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,9 +28,28 @@
     </div>
 </div>
 
-<h3>LED Control</h3>
+@inject HttpClient Http
 
-<button @onclick="FlashLed">Flash LED</button>
+<button class="btn btn-danger" @onclick="SendFlashRequest">
+    FLASH PI LED
+</button>
+
+@code {
+    private async Task SendFlashRequest()
+{
+    Console.WriteLine("Button was clicked! Starting request..."); // Add this!
+    try 
+    {
+        var response = await Http.GetAsync("http://10.1.18.1:5000/flash");
+        Console.WriteLine($"Request finished with status: {response.StatusCode}");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"CRITICAL ERROR: {ex.Message}");
+    }
+}
+}
+
 
 <div class="bottom_navbar">
         <a href="/control">
