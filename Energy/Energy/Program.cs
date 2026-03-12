@@ -15,8 +15,14 @@ builder.Services.AddTransient<EnergyService>();
 
 builder.Services.AddHttpClient("Default", client =>
 {
-    client.BaseAddress = new Uri("https://localhost:5193/"); // Update this if your app runs on a different port
-});   
+    client.BaseAddress = new Uri("https://localhost:5193/");
+});
+
+// Add your PiClient here
+builder.Services.AddHttpClient("PiClient", client =>
+{
+    client.BaseAddress = new Uri("http://10.1.18.1:5000/");
+});
 
 var app = builder.Build();
 

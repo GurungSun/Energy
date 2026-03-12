@@ -1,7 +1,9 @@
 
 @page "/control"
+@using System.Net.Http.Json
 @inject HttpClient Http
 @inject IJSRuntime JSRuntime
+@rendermode InteractiveServer
 
 <head>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_back,book_2,energy_program_saving,home,lightbulb_2" />
@@ -35,19 +37,43 @@
 </button>
 
 @code {
+    private string statusMessage = "Ready.";
+
     private async Task SendFlashRequest()
-{
-    Console.WriteLine("Button was clicked! Starting request..."); // Add this!
-    try 
     {
-        var response = await Http.GetAsync("http://10.1.18.1:5000/flash");
-        Console.WriteLine($"Request finished with status: {response.StatusCode}");
+        statusMessage = "Sending command...";
+
+        // 1. The URL (The Address of your Pi)
+        string piUrl = "http://10.1.18.1:5000/flash";
+
+        // 2. The Payload (The JSON 'Package' your teacher wants)
+        // This creates: {"command": "start_flash"}
+        var payload = new { command = "start_flash" };
+
+        try
+        {
+            // 3. The POST Request
+            // This sends the verb (POST), the address (piUrl), and the package (payload)
+            var response = await Http.PostAsJsonAsync(piUrl, payload);
+
+            if (response.IsSuccessStatusCode)
+            {
+                // This is where we handle the '200' code from the Pi
+                statusMessage = "Success! LED is flashing.";
+            }
+            else
+            {
+                // This handles errors (like 400 or 404)
+                statusMessage = $"Pi error: {response.StatusCode}";
+            }
+        }
+        catch (Exception ex)
+        {
+            // This handles network issues (like the Pi being turned off)
+            statusMessage = "Error: Could not find the Pi on the network.";
+            Console.WriteLine(ex.Message);
+        }
     }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"CRITICAL ERROR: {ex.Message}");
-    }
-}
 }
 
 
