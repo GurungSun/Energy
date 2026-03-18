@@ -2,42 +2,12 @@
 @page "/control"
 @using System.Net.Http.Json
 @inject HttpClient Http
+@using Energy.Models
 @inject IJSRuntime JSRuntime
 @rendermode InteractiveServer
 
-<head>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_back,book_2,energy_program_saving,home,lightbulb_2" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-</head>
-
-<div class="topbar">
-    <div class="holder">
-        <a>
-            <div class="return">
-                <span class="material-symbols-outlined">
-                        arrow_back
-                </span>
-                 <div class="back">
-                    <p>Back</p>
-                </div>
-            </div>         
-        </a>
-        <div class="Ntitle">
-            <h5>Home Control</h5>
-        </div>
-    </div>
-</div>
-
-@inject HttpClient Http
-
-<button class="btn btn-danger" @onclick="SendFlashRequest">
-    FLASH PI LED
-</button>
-
 @code {
-    private string statusMessage = "Ready.";
+    private string statusMessage = "OFF";
 
     private async Task SendFlashRequest()
     {
@@ -74,8 +44,107 @@
             Console.WriteLine(ex.Message);
         }
     }
+
+    private async Task ToggleLight()
+    {
+        var payload = new { command = "toggle" };
+
+        try
+        {
+            var response = await Http.PostAsJsonAsync("http://10.1.18.1:5000/toggle", payload);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadFromJsonAsync<PiResponse>();
+                if (result != null)
+                {
+                    statusMessage = result.state;
+                }
+            }
+            else
+            {
+                statusMessage = $"Pi error: {response.StatusCode}";
+            }
+        }
+
+        catch (Exception ex)
+        {
+
+        }
+    }
 }
 
+@inject HttpClient Http
+
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_back,book_2,energy_program_saving,home,lightbulb_2" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+</head>
+
+<div class="control-page">
+    <div class="top_navbar">
+        <div class="holder">
+            <div class="Ntitle">
+                <h5>Home</h5>
+            </div>
+            <div class="return">
+                <span class="material-symbols-outlined">
+                    arrow_back
+                </span>
+            </div>
+        </div>
+        
+    </div>
+
+<button class="LightB" @onclick="ToggleLight">
+    <div class="half2">
+        <div class="name">
+            <h5>Light 1</h5>
+        </div>
+        <div class="status">
+            <h3>@statusMessage</h3>
+        </div>
+    </div>
+    <div class="half1">
+        <span class="material-symbols-outlined">
+                lightbulb_2
+        </span>
+    </div>
+</button>
+
+<button class="LightB" @onclick="ToggleLight">
+    <div class="half2">
+        <div class="name">
+            <h5>Light 1</h5>
+        </div>
+        <div class="status">
+            <h3>@statusMessage</h3>
+        </div>
+    </div>
+    <div class="half1">
+        <span class="material-symbols-outlined">
+                lightbulb_2
+        </span>
+    </div>
+</button>
+
+<button class="LightB" @onclick="SendFlashRequest">
+    <div class="half2">
+        <div class="name">
+            <h5>Light 1</h5>
+        </div>
+        <div class="status">
+            <h3>ON</h3>
+        </div>
+    </div>
+    <div class="half1">
+        <span class="material-symbols-outlined">
+                lightbulb_2
+        </span>
+    </div>
+</button>
 
 <div class="bottom_navbar">
         <a href="/control">
@@ -100,3 +169,4 @@
             </div>
         </a>
     </div>
+</div>

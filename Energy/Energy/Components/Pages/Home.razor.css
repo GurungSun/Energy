@@ -92,11 +92,16 @@ html {
     padding-bottom: calc(0.5rem + env(safe-area-inset-bottom));
 }
 
-.bottom_navbar a:focus-visible {
-    outline: none;
+.bottom_navbar a,
+.bottom_navbar a:visited,
+.bottom_navbar a:hover,
+.bottom_navbar a:focus,
+.bottom_navbar a:active {
+    text-decoration: none;
+    color: inherit;
 }
 
-.bottom_navbar a{
+.bottom_navbar a:focus-visible {
     outline: none;
 }
 
@@ -203,7 +208,7 @@ html {
     width: 90%;
     height: 8.75rem;
     margin: auto;
-    background-color: #335D80;
+    background-color: rgb(51, 93, 128, 0.9);
     border-radius: 1rem;
     gap: 1rem;
     display: flex;
