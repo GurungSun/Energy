@@ -1,0 +1,319 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+::global html {
+    background: none;
+    margin: 0;
+    padding: 0;
+}
+
+::global body {
+    background: none;
+    padding: 0;
+    margin: 0;
+} 
+
+a {
+    text-decoration: none;
+}
+
+.body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #F5F2F0;
+
+}
+
+.header{
+    height: 16rem;
+    width: 100%;
+    background-color: #462255;
+}
+
+.holder{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 8rem;
+}
+
+.block2{
+    width: 100%;
+    height: 3rem;
+}
+
+.PageTitle{
+    color: #FFFFFF;
+    font-family: "Arimo", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 2.4413rem;
+    font-weight: 700;
+    line-height: 100%;
+    padding-top: 4rem;
+
+    width: 90%;
+    height: 3rem;
+    margin-bottom: 3rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.PageDesc{
+    color: #FFFFFF;
+    font-family: "Arimo", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 1.25rem;
+    font-weight: 700;
+
+    width: 90%;
+    height: 3rem;
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.back{
+    z-index: 5;
+    width: 100%;
+    height: 80rem;
+    background-color: #f5f5f5;
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+    position: relative;
+    top: -2.5rem;
+}
+
+.block{
+    height: 2rem;
+    width: 100%;
+    background-color: transparent;
+}
+
+.icons{
+    display: flex;
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0rem;
+    margin-bottom: 2rem;
+    gap: 1rem;
+}
+
+.icons h4{
+    color: #282D3B;
+    font-family: "Arimo", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 2.4413rem;
+    font-weight: 700;
+    line-height: 100%;
+}
+
+.icons p{
+    color: #282D3B;
+    font-family: "Arimo", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.icons .material-symbols-outlined{
+    font-size: 6rem;
+    color: #282D3B;
+}
+
+.icon{
+    width: 11.25rem;
+    height: 11.25rem;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.split1{
+    display: flex;
+    width: 100%;
+    margin-top: auto;
+}
+
+.status{
+    height: auto;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 1rem;
+}
+
+.light{
+    height: auto;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.material-symbols-outlined{
+    font-size: 6rem;
+}
+
+.split2{
+    width: 100%;
+    height: 3rem;
+    margin-top: auto;
+}
+
+.appname{
+    text-align: center;
+    margin: auto;
+    font-size: 20px;
+}
+
+.stat{
+    width: 85%;
+    height: 8.75rem;
+    margin: auto;
+    background-color: #FFFFFF;
+    border-radius: 1rem;
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+
+}
+
+.title{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto;
+
+    font-family: "Arimo", sans-serif;
+    text-align: center;
+}
+
+.title h6{
+    color: #282D3B;
+    font-style: normal;
+    font-size: 1.5625rem;
+    font-weight: 400;
+    margin: auto;
+}
+
+.data{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: auto;
+
+    font-family: "Arimo", sans-serif;
+    text-align: center;
+}
+
+.data h5{
+    color: #282D3B;
+    font-style: normal;
+    font-size: 1.9531rem;
+    font-weight: 700;
+}
+
+.daily{
+    width: 85%;
+    height: 8.75rem;
+    margin: auto;
+    margin-top: 1rem;
+    background-color: #FFFFFF;
+    border-radius: 1rem;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+
+    font-family: "Arimo", sans-serif;
+}
+
+.daily h6{
+    color: #3F352C;
+    font-style: normal;
+    font-size: 1.5625rem;
+    font-weight: 700;
+    margin: auto;
+}
+
+.daily p{
+    color: #3F352C;
+    font-style: normal;
+    font-size: 1.25rem;
+    font-weight: 400;
+}
+
+.Ttitle{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1.4rem;
+}
+
+.Dtip{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+}
+
+.a, .a:visited, .a:hover, .a:focus, .a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+.bottom_navbar  {
+    z-index: 10;
+    min-height: 4rem;
+    width: 100%;
+    position: fixed;
+    bottom: 0rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0.25rem rgba(0,0,0,0.5);
+}
+
+.bottom_navbar a,
+.bottom_navbar a:visited,
+.bottom_navbar a:hover,
+.bottom_navbar a:focus,
+.bottom_navbar a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+.navitem{
+    width: 3rem;
+    height: 3rem;
+    margin: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    color: #616675;
+}
+
+.navitem .material-symbols-outlined{
+    font-size: 3rem;
+}
+
