@@ -2,6 +2,54 @@
 
 <PageTitle>Home</PageTitle>
 
+@using System.Net.Http.Json
+@inject HttpClient Http
+@using Energy.Models
+@using System.Threading.Tasks
+@using Microsoft.AspNetCore.Components.Authorization
+@inject IJSRuntime JSRuntime
+@implements IDisposable
+@rendermode InteractiveServer
+@code{
+
+    private string statusMessage = "OFF";
+    private System.Threading.Timer? statusTimer;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await FetchStatus();
+
+        statusTimer = new System.Threading.Timer(async _ =>
+        {
+            await InvokeAsync(FetchStatus);
+        }, null, TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(5));
+    }
+
+    private async Task FetchStatus()
+    {
+        try
+        {
+            var result = await Http.GetFromJsonAsync<PiResponse>("http://10.1.18.1:5000/status");
+            if (result != null)
+            {
+                statusMessage = result.state;
+                StateHasChanged();
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error fetching status: {ex.Message}");
+        }
+    }
+
+    public void Dispose()
+    {
+        statusTimer?.Dispose();
+    }
+}
+
+
+
 <head>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_back,book_2,energy_program_saving,home,lightbulb_2" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,7 +98,8 @@
     </div>
 
     <div class="icons">
-        <div class="icon">
+        <a href="/control">
+            <div class="icon">
             <div class="split1">
                 <div class="light">
                     <span class="material-symbols-outlined">
@@ -58,7 +107,7 @@
                     </span>
                 </div>
                 <div class="status">
-                    <h4>ON</h4>
+                    <h4>@statusMessage</h4>
                 </div>
             </div>
             <div class="split2">
@@ -67,6 +116,7 @@
                 </div>  
             </div>
         </div>
+        </a>
         <div class="icon">
             <div class="split1">
                 <div class="light">
