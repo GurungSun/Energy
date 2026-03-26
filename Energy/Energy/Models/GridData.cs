@@ -1,15 +1,30 @@
 namespace Energy.Models;
+using System.Text.Json.Serialization;
+
+
+public class GenerationResponse
+{
+    [JsonPropertyName("data")]
+    public GridData Data { get; set; }
+}
 
 public class GridData
 {
-    public DateTime time { get; set; }
+    [JsonPropertyName("from")]
+    public DateTime From { get; set; }
 
-    public double ccgt { get; set; }
-    public double nuclear { get; set; }
-    public double wind { get; set; }
-    public double hydro { get; set; }
-    public double biomass { get; set; }
+    [JsonPropertyName("to")]
+    public DateTime To { get; set; }
 
-    public double price { get; set; }
-    public double emissions { get; set; }
+    [JsonPropertyName("generationmix")]
+    public List<FuelMix> GenerationMix { get; set; } = new();
+}
+
+public class FuelMix
+{
+    [JsonPropertyName("fuel")]
+    public string Fuel { get; set; } = string.Empty;
+
+    [JsonPropertyName("perc")]
+    public double Perc { get; set; }
 }

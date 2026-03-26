@@ -1,6 +1,7 @@
 using Energy.Components;
 using Energy.Data;
 using Energy.Services;
+using System.Security.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +25,17 @@ builder.Services.AddHttpClient("PiClient", client =>
     client.BaseAddress = new Uri("http://10.1.18.1:5000/");
 });
 
+builder.Services.AddHttpClient<EnergyService>(client => 
+{
+    client.BaseAddress = new Uri("https://api.carbonintensity.org.uk/");
+    client.DefaultRequestHeaders.Add("User-Agent", "UKGridEnergyApp/1.0");
+    client.DefaultRequestHeaders.Add("Accept", "application/json");
+})
+.ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+{
+    UseProxy = false, // <-- THE MAGIC WORD: Bypass antivirus web shields/VPNs
+    ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

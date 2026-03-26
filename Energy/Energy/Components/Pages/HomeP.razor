@@ -1,4 +1,54 @@
 @page "/"
+@using Energy.Models
+@using Energy.Services
+@inject EnergyService energyService
+
+@code {
+    private GridData? currentGrid;
+
+    protected override async Task OnInitializedAsync()
+    {
+        currentGrid = await energyService.GetCurrentGridDataAsync();
+    }
+
+    private string GetColorForFuel(string fuelType)
+    {
+        return fuelType.ToLower() switch
+        {
+            "wind" => "#2ECC71",
+            "solar" => "#F1C40F",
+            "hydro" => "#3498DB",
+            "nuclear" => "#9B59B6",
+            "biomass" => "#E67E22",
+            "gas" => "#E74C3C",
+            "coal" => "#34495E",
+            _ => "#95A5A6"
+        };
+    }
+
+    private string GetDonutGradient()
+    {
+        if (currentGrid?.GenerationMix == null || !currentGrid.GenerationMix.Any())
+            return "conic-gradient(#ccc 0% 100%)";
+
+        var gradientParts = new List<string>();
+        double currentAngle = 0;
+
+        foreach (var fuel in currentGrid.GenerationMix.OrderByDescending(f => f.Perc))
+        {
+            if (fuel.Perc <= 0) continue;
+
+            string color = GetColorForFuel(fuel.Fuel);
+            double nextAngle = currentAngle + fuel.Perc;
+            
+            gradientParts.Add($"{color} {currentAngle}% {nextAngle}%");
+            
+            currentAngle = nextAngle;
+        }
+
+        return $"conic-gradient({string.Join(", ", gradientParts)})";
+    }
+}
 
 <head>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_back,book_2,energy_program_saving,home,lightbulb_2" />
@@ -93,6 +143,44 @@
             </a>
         </div>
     </div>
+    <div class="chart">
+            @if (currentGrid == null)
+            {
+                <p class="text-center text-muted">Loading grid data...</p>
+            }
+            else
+            {
+                <div class="block">
+                    
+                </div>
+                <div class="donut">
+                    
+                    <div class="donut-chart shadow" style="background: @GetDonutGradient();">
+                        <div class="donut-hole">
+                        </div>
+                    </div>
+
+                    <div class="CTitle">
+                        <h2>Energy Generation</h2>
+                    </div>
+
+                    <div class="types">
+                        <div class="row row-cols-2 g-3">
+                            @foreach (var fuel in currentGrid.GenerationMix.OrderByDescending(f => f.Perc))
+                            {
+                                <div class="col d-flex align-items-center">
+                                    <span class="color-box me-2 shadow-sm" style="background-color: @GetColorForFuel(fuel.Fuel);"></span>
+                                    <strong class="text-capitalize me-auto">@fuel.Fuel</strong>
+                                    <span class="text-muted">@fuel.Perc%</span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                </div>
+            }
+        </div>
+
         <div class="stat">
             <div class="title">
                 <h6>Today the UK has generated</h6>
@@ -112,7 +200,10 @@
                 <p>Did you know that the UK is a world leader in offshore wind energy?</p>
             </div>
         </div>
+
     </div>
+
+    
 
     <div class="block">
     
