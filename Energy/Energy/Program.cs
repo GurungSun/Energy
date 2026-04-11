@@ -19,10 +19,9 @@ builder.Services.AddHttpClient("Default", client =>
     client.BaseAddress = new Uri("https://localhost:5193/");
 });
 
-// Add your PiClient here
 builder.Services.AddHttpClient("PiClient", client =>
 {
-    client.BaseAddress = new Uri("http://10.1.18.1:5000/");
+    client.BaseAddress = new Uri("http://192.168.0.13:5000/");
 });
 
 builder.Services.AddHttpClient<EnergyService>(client => 

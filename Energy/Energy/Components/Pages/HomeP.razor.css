@@ -20,8 +20,8 @@ html {
     margin: 0;
 } 
 
-a {
-    text-decoration: none;
+::global a {
+    text-decoration: none !important;
 }
 
 .body{
@@ -181,19 +181,6 @@ a {
     font-size: 20px;
 }
 
-.stat{
-    width: 85%;
-    height: 8.75rem;
-    margin: auto;
-    background-color: #FFFFFF;
-    border-radius: 1rem;
-    gap: 1rem;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
-
-}
-
 .title{
     width: 100%;
     display: flex;
@@ -276,13 +263,12 @@ a {
 
 .chart{
     width: 85%;
-    height: 30rem;
+    height: 36rem;
     border-radius: 2rem;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
     margin-left: auto;
     margin-right: auto;
     margin-top: 2rem;
-    margin-bottom: 2rem;
     background-color: #FFFFFF;
     justify-content: center;
 }
@@ -293,6 +279,23 @@ a {
     width: 20rem;
     margin-left: auto;
     margin-right: auto;
+}
+
+.Ctitle h2{
+    font-size: 1.5625rem;
+}
+
+.Ctime{
+    font-family: "Arimo", sans-serif;
+    margin-top: 0.5rem;
+    width: 20rem;
+    font-weight: 400;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.Ctime h4{
+    font-size: 1.25rem;
 }
 
 .donut-chart{
@@ -338,8 +341,21 @@ a {
     display: inline-block;
 }
 
+.datas{
+    height: auto;
+}
+
+.data-items{
+    margin-top: 0.5rem;
+}
+
 .a, .a:visited, .a:hover, .a:focus, .a:active {
-    text-decoration: none;
+    text-decoration: none !important;
+    color: inherit;
+}
+
+.icons a, .icons a:visited, .icons a:hover, .icons a:focus, .icons a:active {
+    text-decoration: none !important;
     color: inherit;
 }
 
@@ -361,7 +377,7 @@ a {
 .bottom_navbar a:hover,
 .bottom_navbar a:focus,
 .bottom_navbar a:active {
-    text-decoration: none;
+    text-decoration: none !important;
     color: inherit;
 }
 

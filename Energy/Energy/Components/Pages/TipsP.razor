@@ -1,0 +1,101 @@
+@using Energy.Services
+@using Energy.Models
+@page "/tipsp"
+@inject TipsService TipsService
+
+<PageTitle>Energy Saving Tips</PageTitle>
+
+@code {
+    private List<Tip> tips = new List<Tip>();
+
+    protected override void OnInitialized()
+    {
+        tips = TipsService.GetTips();
+    }
+}
+
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_back,book_2,energy_program_saving,home,lightbulb_2" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+</head>
+
+<div>
+    <div class="bottom_navbar">
+        <a href="/controlp">
+             <div class="navitem">
+                <span class="material-symbols-outlined">
+                    energy_program_saving
+                </span>
+            </div>
+        </a>
+        <a href="/homep">
+            <div class="navitem">
+                <span class="material-symbols-outlined">
+                    home
+                </span>
+            </div>
+        </a>
+        <a href="/tipsp">
+            <div class="navitem">
+                <span class="material-symbols-outlined">
+                    book_2
+                </span>
+            </div>
+        </a>
+    </div>
+
+    <div class="header">
+        <div class="block2">
+
+        </div>
+        <div class="holder">
+            <div class="PageTitle">
+                <h4>Tips</h4>
+            </div>
+            <div class="PageDesc">
+                <p>Learn to save Energy</p>
+            </div> 
+        </div>
+    </div>
+
+    <div class="back">
+        <div class="block">
+            
+        </div>
+        <div class="Ptitle">
+        <h3>Energy Saving Tips</h3>
+        </div>
+        <div class="text">
+            <h6>Why should we save energy?</h6>
+            <p>Saving energy is beneficial because it reduces pollution, lowers energy costs, and helps protect natural resources for future generations.</p>
+        </div>
+        <div class="image">
+            <img src="https://www.azocleantech.com/images/Article_Images/ImageForArticle_703(1).jpg" />
+        </div>
+        <div class="text">
+            <p>Here are some tips to help you save energy:</p>
+        </div>
+        @foreach (var tip in tips)
+        {
+            <div class="tip-card">
+                <div class="title">
+                    <h6>@tip.Title</h6>
+                </div>
+                <div class="contents">
+                    <ul>
+                        <li>@tip.Description</li>
+                    </ul>
+                </div>
+            </div>
+        }
+    </div>
+
+    
+
+    <div class="block">
+    
+    </div>
+</div>

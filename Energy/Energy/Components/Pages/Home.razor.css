@@ -4,6 +4,20 @@
     box-sizing: border-box;
 }
 
+.a, .a:visited, .a:hover, .a:focus, .a:active {
+    text-decoration: none !important;
+    color: inherit;
+}
+
+a, a:visited, a:hover, a:focus, a:active {
+    text-decoration: none !important;
+    color: inherit;
+}
+
+a:focus-visible {
+    outline: none;
+}
+
 html {
   font-size: 16px;
 }
@@ -57,9 +71,8 @@ html {
     font-weight: 700;
     position: absolute;
     left: 50%;
-    transform: translateX(-50%);
-    top: 50%;
     transform: translate(-50%, -50%);
+    top: 50%;
     width: auto;
     height: 3rem;
     display: flex;
@@ -96,18 +109,19 @@ html {
 .bottom_navbar a:visited,
 .bottom_navbar a:hover,
 .bottom_navbar a:focus,
-.bottom_navbar a:active {
-    text-decoration: none;
-    color: inherit;
-}
+.bottom_navbar a:active
+    {
+        text-decoration: none !important;
+        color: inherit;
+};
 
-.a, .a:visited, .a:hover, .a:focus, .a:active {
-    text-decoration: none;
+.icons a,
+.icons a:visited,
+.icons a:hover,
+.icons a:focus,
+.icons a:active {
+    text-decoration: none !important;
     color: inherit;
-}
-
-.bottom_navbar a:focus-visible {
-    outline: none;
 }
 
 .navitem{
@@ -128,13 +142,13 @@ html {
 
 .icons{
     display: flex;
-    width: 90%;
+    width: 85%;
     height: auto;
     margin-left: auto;
     margin-right: auto;
     margin-top: 2rem;
     margin-bottom: 2rem;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
 .icons h4{
@@ -210,7 +224,7 @@ html {
 }
 
 .stat{
-    width: 90%;
+    width: 85%;
     height: 8.75rem;
     margin: auto;
     background-color: rgb(51, 93, 128, 0.9);
@@ -257,7 +271,7 @@ html {
 }
 
 .picture{
-    width: 90%;
+    width: 85%;
     height: 10rem;
     margin: auto;
     margin-bottom: 2rem;
@@ -272,7 +286,7 @@ html {
 }
 
 .daily{
-    width: 90%;
+    width: 85%;
     height: 8.75rem;
     margin: auto;
     background-color: #FFFFFF;
@@ -314,6 +328,3 @@ html {
     margin-bottom: auto;
 }
 
-a {
-    text-decoration: none;
-}

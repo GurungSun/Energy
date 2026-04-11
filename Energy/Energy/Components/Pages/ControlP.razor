@@ -1,5 +1,4 @@
-
-@page "/control"
+@page "/controlp"
 @using System.Net.Http.Json
 @inject HttpClient Http
 @using Energy.Models
@@ -7,7 +6,7 @@
 @rendermode InteractiveServer
 @implements IDisposable
 
-@code {
+@code{
     private string statusMessage = "OFF";
 
     private System.Threading.Timer? statusTimer;
@@ -46,34 +45,6 @@
         statusTimer?.Dispose();
     }
 
-    private async Task SendFlashRequest()
-    {
-        statusMessage = "Sending command...";
-
-        string piUrl = "http://192.168.0.13:5000/flash";
-
-        var payload = new { command = "start_flash" };
-
-        try
-        {
-            var response = await Http.PostAsJsonAsync(piUrl, payload);
-
-            if (response.IsSuccessStatusCode)
-            {
-                statusMessage = "Success! LED is flashing.";
-            }
-            else
-            {
-                statusMessage = $"Pi error: {response.StatusCode}";
-            }
-        }
-        catch (Exception ex)
-        {
-            statusMessage = "Error: Could not find the Pi on the network.";
-            Console.WriteLine(ex.Message);
-        }
-    }
-
     private async Task ToggleLight()
     {
         var payload = new { command = "toggle" };
@@ -108,92 +79,104 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
 </head>
 
-<div class="control-page">
-    <div class="top_navbar">
-        <div class="holder">
-            <div class="Ntitle">
-                <h5>Control</h5>
-            </div>
-            <div class="return">
-                <span class="material-symbols-outlined">
-                    arrow_back
-                </span>
-            </div>
-        </div>
-        
-    </div>
-
-<button type="button" class="LightB" @onclick="ToggleLight">
-    <div class="half2">
-        <div class="name">
-            <h5>Light 1</h5>
-        </div>
-        <div class="status">
-            <h3>@statusMessage</h3>
-        </div>
-    </div>
-    <div class="half1">
-        <span class="material-symbols-outlined">
-                lightbulb_2
-        </span>
-    </div>
-</button>
-
-<button class="LightB" @onclick="ToggleLight">
-    <div class="half2">
-        <div class="name">
-            <h5>Light 1</h5>
-        </div>
-        <div class="status">
-            <h3>OFF</h3>
-        </div>
-    </div>
-    <div class="half1">
-        <span class="material-symbols-outlined">
-                lightbulb_2
-        </span>
-    </div>
-</button>
-
-<button class="LightB" @onclick="ToggleLight">
-    <div class="half2">
-        <div class="name">
-            <h5>Light 1</h5>
-        </div>
-        <div class="status">
-            <h3>OFF</h3>
-        </div>
-    </div>
-    <div class="half1">
-        <span class="material-symbols-outlined">
-                lightbulb_2
-        </span>
-    </div>
-</button>
-
-<div class="bottom_navbar">
-        <a href="/control">
+<div>
+    <div class="bottom_navbar">
+        <a href="/controlp">
              <div class="navitem">
                 <span class="material-symbols-outlined">
                     energy_program_saving
                 </span>
             </div>
         </a>
-        <a href="/home">
+        <a href="/homep">
             <div class="navitem">
                 <span class="material-symbols-outlined">
                     home
                 </span>
             </div>
         </a>
-        <a href="/tips">
+        <a href="/tipsp">
             <div class="navitem">
                 <span class="material-symbols-outlined">
                     book_2
                 </span>
             </div>
         </a>
+    </div>
+
+    <div class="header">
+        <div class="block2">
+
+        </div>
+        <div class="holder">
+            <div class="PageTitle">
+                <h4>Dashboard</h4>
+            </div>
+            <div class="PageDesc">
+                <p>Integrated Home Environment</p>
+            </div> 
+        </div>
+    </div>
+
+    <div class="back">
+        <div class="block">
+
+        </div>
+        <button type="button" class="LightB" @onclick="ToggleLight">
+            <div class="half2">
+                <div class="name">
+                    <h5>Light 1</h5>
+                </div>
+                <div class="status">
+                    <h3>@statusMessage</h3>
+                </div>
+            </div>
+            <div class="half1">
+                <span class="material-symbols-outlined">
+                        lightbulb_2
+                </span>
+            </div>
+        </button>
+
+        <button class="LightB" @onclick="ToggleLight">
+            <div class="half2">
+                <div class="name">
+                    <h5>Light 1</h5>
+                </div>
+                <div class="status">
+                    <h3>OFF</h3>
+                </div>
+            </div>
+            <div class="half1">
+                <span class="material-symbols-outlined">
+                        lightbulb_2
+                </span>
+            </div>
+        </button>
+
+        <button class="LightB" @onclick="ToggleLight">
+            <div class="half2">
+                <div class="name">
+                    <h5>Light 1</h5>
+                </div>
+                <div class="status">
+                    <h3>OFF</h3>
+                </div>
+            </div>
+            <div class="half1">
+                <span class="material-symbols-outlined">
+                        lightbulb_2
+                </span>
+            </div>
+        </button>
+    </div>
+
+    
+
+    <div class="block">
+    
     </div>
 </div>
